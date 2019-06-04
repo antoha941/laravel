@@ -1,47 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<style>
-		label{
-			display: block;
-			margin:0;
-		}
+@extends('layouts.app')
 
-		input{
-			width:100%;
-		}
-
-		form{
-			margin-top:70px;
-		}
-	</style>
-</head>
-<body>
-	<h1 class="col-md-12 text-center">Page Edit car</h1>
+@section('content')
 	<div class="container">
-		<form action="/home/edit/{{$car->id}}" method="post" role="form" class="col-md-6 offset-md-3">
-			<label for="make">Make</label>
-			<input type="text" name="make" value="{{ $car->make }}"><br><br>
+	    <div class="row">
+	    	@include('layouts.errors')
+	        <div class="col-md-8 col-md-offset-2">  
+				<form action="{{$car->id}}" method="post" role="form" class="col-md-6 offset-md-3">
 
-			<label for="model">Model</label>
-			<input type="text" name="model" value="{{ $car->model }}"><br><br>
-
-			<label for="year">Year</label>
-			<input type="text" name="year" value="{{ $car->year }}"><br><br>
-
-			<label for="type">Type</label>
-			<input type="text" name="type" value="{{ $car->type }}"><br><br>
-			<input type="hidden" name="id" value="{{$car->id}}">
-			<input type="hidden" name="_token" value="{{csrf_token()}}">
-			<input type="submit" name="submit">
-		</form>
-		<a href="/">< Home</a>
+					<div class="form-group">
+						<label for="make">Make</label>
+						<input type="text" name="make" value="{{ $car->make }}" class="form-control" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="model">Model</label>
+						<input type="text" name="model" value="{{ $car->model }}" class="form-control" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="year">Year</label>
+						<input type="number" name="year" value="{{ $car->year }}" class="form-control" required>
+					</div>
+					
+					<div class="form-group">
+						<label for="type">Type</label>
+						<select type="text" name="type" class="form-control"  value="{{ $car->type }}">
+							@foreach ($types as $type)
+								<option
+								<?php if ($type == $car->type): ?>
+									selected
+								<?php endif ?>
+								 value="{{$type}}">{{$type}}</option>
+							@endforeach
+						</select>
+						<input type="hidden" name="_token" value="{{csrf_token()}}">
+					</div>
+					<input type="submit"  value="Edit Car" name="Edit" class="form-control btn btn-primary">
+				</form>
+			</div>
+			<div class="clearfix"></div>
+			<a class="btn btn-primary" href="/home">Back</a>
+		</div>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+@endsection

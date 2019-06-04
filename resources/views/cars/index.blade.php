@@ -32,14 +32,14 @@
 				
 				@if (Auth::check())
 					<td>
-						<a href="car/edit/{{$car->id}}">Edit</a>
+						<a href="home/edit/{{$car->id}}">Edit</a>
 					</td>
 				@endif
 			
 			
 				@if (Auth::check())
 					<td>
-						<a href="car/delete/{{$car->id}}">Delete</a>
+						<a href="home/delete/{{$car->id}}">Delete</a>
 					</td>
 				@endif
 			</tr>

@@ -18,7 +18,7 @@ class CreateCarsTable extends Migration
             $table->string('make');
             $table->string('model');
             $table->string('year');
-            $table->string('type');
+            $table->enum('type', array('Hatchback','Sedan','Coupe'));
             $table->timestamps();
         });
     }

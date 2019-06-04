@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if(session()->has('Status'))
+        <div class="alert alert-success">
+            {{ session()->get('Status') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <table class="table table-dark">
