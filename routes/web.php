@@ -15,17 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home/addCar','CarsController@createCar');
+    Route::get('/home/edit/{car}','CarsController@editCar');
+    Route::get('/home/delete/{car}','CarsController@deleteCar');
+    Route::post('/home/store','CarsController@store');
+    Route::post('/home/edit/{car}','CarsController@updateCar');
+});
 
 Route::get('/car','CarsController@index');
-Route::get('/home/addCar','CarsController@createCar');
-
-Route::post('/home/store','CarsController@store');
 Route::get('/car/{car}','CarsController@show');
-
-Route::get('/home/edit/{car}','CarsController@editCar');
-Route::post('/home/edit/{car}','CarsController@updateCar');
-
-Route::get('/home/delete/{car}','CarsController@deleteCar');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -11,17 +11,17 @@
 
 					<div class="form-group">
 						<label for="make">Make</label>
-						<input type="text" name="make" class="form-control" required>
+						<input type="text" name="make" class="form-control" value="{{ old('make') }}">
 					</div>
 					
 					<div class="form-group">
 						<label for="model">Model</label>
-						<input type="text" name="model" class="form-control" required>
+						<input type="text" name="model" class="form-control" value="{{ old('model') }}">
 					</div>
 					
 					<div class="form-group">
 						<label for="year">Year</label>
-						<input type="number" name="year" class="form-control" required>
+						<input type="number" name="year" class="form-control" value="{{ old('year') }}">
 					</div>
 
 					<div class="form-group">

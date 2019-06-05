@@ -29,10 +29,12 @@ class CarsController extends Controller
 
     public function store(Request $request)
     {
+
         $this->validate(request(), [
+            'make' => 'sometimes|required|max:10',
+            'model' => 'required|max:10',
             'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
         ]);
-          
     	$car = $request->all();
         
     	Car::create($car); 
@@ -49,11 +51,13 @@ class CarsController extends Controller
     public function updateCar(Request $request, $id)
     {
         $this->validate(request(), [
+            'make' => 'required|max:10',
+            'model' => 'required|max:10',
             'year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')+1),
         ]);
     	$car = $request->all();
     	$car = Car::find($id)->update($car);    	
-        return redirect('/home/listCar');
+        return redirect('/home/listCar')->with('Status','Car succes update');;
     }
 
     public function deleteCar($id)

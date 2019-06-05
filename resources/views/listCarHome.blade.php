@@ -29,7 +29,7 @@
                             <td>
                                 <a class="btn btn-primary" href="/car/{{$car->id}}">Show details</a>
                                 <a class="btn btn-success" href="edit/{{$car->id}}">Edit</a>
-                                <a class="btn btn-danger" href="delete/{{$car->id}}">Delete</a>
+                                <a class="btn btn-danger" href="delete/{{$car->id}}" onclick="return confirm('Are you sure?')">Delete</a>
                             </td>
                         </tr>
                     @endforeach
